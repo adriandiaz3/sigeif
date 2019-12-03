@@ -1,0 +1,79 @@
+.titulo {
+    display: inline-block; 
+    font-size: 24px;
+}
+
+.tituloRelatorio {
+    display: inline-block;
+    font-size: 16px;
+}
+
+.botaoCadastro {
+    display: inline-block;
+    max-width: 100%;
+}
+
+.folhadepresenca {
+    display: inline-block;
+}
+
+.iconePresenca{
+    width: 35%;
+    height: 35%;
+}
+
+.iconeBotao {
+    background: none;
+    padding: 0px; 
+    border: none;
+}
+
+.icone{
+    width: 130%;
+    height: 130%;
+    margin-bottom: 3px;
+}
+
+.icon {
+    width: 50%;
+    height: 50%;
+}
+
+.iconeAzul {
+    font-size: 20px; color: Mediumslateblue;
+}
+
+.textoBranco {
+    color: white;
+}
+
+.mesmaLinha {
+    white-space: nowrap;
+}
+
+.nomeEmpresa{
+    font-size:17px; 
+    margin:5px; 
+    margin-top:20px;
+}
+
+a {
+    color: inherit;    
+    text-decoration:none;
+}
+
+.linha{
+    border-bottom:1px solid black;
+}
+
+.tabelas {
+    font-size: 12px;
+}
+
+.cardEmpresas {
+    border-radius: 25px;
+}
+
+.vencido{
+    color: red;
+}

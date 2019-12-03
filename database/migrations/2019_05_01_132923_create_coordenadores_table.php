@@ -15,11 +15,12 @@ class CreateCoordenadoresTable extends Migration
     {
         Schema::create('coordenadores', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->string('nome');
+            $table->string('nome')->nullable();
             $table->string('curso');
-            $table->string('email');
-            $table->bigInteger('telefone');
-            $table->string('coordenador_estagio');
+            $table->string('email')->nullable();
+            $table->string('telefone')->nullable();
+            $table->string('coordenador_estagio')->nullable();
+            $table->integer('status')->default(1)->nullable();
             $table->timestamps();
         });
     }

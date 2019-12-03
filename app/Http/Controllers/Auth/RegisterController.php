@@ -1,9 +1,10 @@
 <?php
 
-namespace App\Http\Controllers\Auth;
+namespace SiGEIF\Http\Controllers\Auth;
 
-use App\User;
-use App\Http\Controllers\Controller;
+use SiGEIF\User;
+use DB;
+use SiGEIF\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Foundation\Auth\RegistersUsers;
@@ -28,7 +29,7 @@ class RegisterController extends Controller
      *
      * @var string
      */
-    protected $redirectTo = '/home';
+    //protected $redirectTo = '/home';
 
     /**
      * Create a new controller instance.
@@ -37,7 +38,13 @@ class RegisterController extends Controller
      */
     public function __construct()
     {
-        $this->middleware('guest');
+        $quantidade = DB::table('users')->count();
+
+        if ($quantidade == 0) {
+                $this->middleware('guest');
+            }else{
+                $this->middleware('auth');
+            }   
     }
 
     /**
@@ -59,14 +66,24 @@ class RegisterController extends Controller
      * Create a new user instance after a valid registration.
      *
      * @param  array  $data
-     * @return \App\User
+     * @return \SiGEIF\User
      */
     protected function create(array $data)
     {
+        $quantidade = DB::table('users')->count();
+        $cargo = 0;
+
+        if ($quantidade == 0) {
+                $cargo = 1;
+            }else{
+                $cargo = 3;
+            }
+
         return User::create([
             'name' => $data['name'],
             'email' => $data['email'],
             'password' => Hash::make($data['password']),
+            'cargo' => $cargo,
         ]);
     }
 }

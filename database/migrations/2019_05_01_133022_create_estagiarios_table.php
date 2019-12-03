@@ -15,32 +15,17 @@ class CreateEstagiariosTable extends Migration
     {
         Schema::create('estagiarios', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->bigInteger('cadastro');
             $table->string('nome');
-            $table->bigInteger('telefone');
-            $table->string('email');
-            $table->date('nascimento');
-            $table->bigInteger('cpf');
-            $table->bigInteger('matricula');
-            $table->string('tipo_estagio');
+            $table->string('telefone')->nullable();
+            $table->string('email')->nullable();
+            $table->date('nascimento')->nullable();
+            $table->bigInteger('cpf')->nullable();
+            $table->bigInteger('matricula')->nullable();
 
             $table->bigInteger('curso')->unsigned();
             $table->foreign('curso')->references('id')->on('coordenadores');
-
-        
-            $table->bigInteger('endereco')->unsigned();
-            $table->foreign('endereco')->references('id')->on('empresas');
-
-            $table->date('inicial');
-            $table->date('final');
-
-            $table->string('termo_compromisso');
-            $table->string('plano_estagio');
-            $table->string('aditivo');
-            $table->string('relatorio_atividades');
-            $table->string('recisao_contrato');
-            $table->integer('situacao');
-            $table->string('observacao');
+            
+            $table->integer('status')->default(1)->nullable();
             $table->timestamps();
         });
     }

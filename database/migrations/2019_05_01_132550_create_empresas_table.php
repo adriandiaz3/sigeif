@@ -15,16 +15,17 @@ class CreateEmpresasTable extends Migration
     {
         Schema::create('empresas', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->date('vencimento');
-            $table->bigInteger('numero_convenio');
+            $table->date('vencimento')->nullable();
+            $table->string('numero_convenio')->nullable();
             $table->integer('quantidade_alunos');
             $table->string('razao_social');
-            $table->bigInteger('cnpj');
-            $table->string('endereco');
-            $table->string('responsavel');
-            $table->bigInteger('cpf');
-            $table->bigInteger('telefone');
-            $table->string('email');
+            $table->bigInteger('cnpj')->nullable();
+            $table->string('endereco')->nullable();
+            $table->string('responsavel')->nullable();
+            $table->bigInteger('cpf')->nullable();
+            $table->string('telefone')->nullable();
+            $table->string('email')->nullable();
+            $table->integer('status')->default(1)->nullable();
             $table->timestamps();
         });
     }

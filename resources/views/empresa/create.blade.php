@@ -1,77 +1,96 @@
-@extends('layouts.app')
+@extends('light-bootstrap-dashboard::layouts.main')
 
-@section('titulo')
-    Cadastrando uma empresa
+@section('content-title')
+Cadastrar empresa
 @endsection
 
-@section('conteudo')
-        <div class="mt-4 container">
+@section('content')
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-md-12">
+            <div class="card">
+                <div class="card-header">
+                    <h4 class="card-title">Cadastre uma empresa</h4>
+                </div>
 
-            <h1 class="text-center mb-3">Cadastre uma empresa</h1>
-
-            <form action="{{ url("/empresa") }}" method="POST">
-            {{ csrf_field() }}
-                <div class="form-group row">
-                    <label id="descricao"  class="col-sm-2 col-form-label">Vencimento</label>
-                    <div class="col-sm-10">
-                        <input type="date" name="vencimento" class="form-control required">
-                    </div>  
+                @if( isset($errors) && count($errors) > 0 )
+                        @foreach( $errors->all() as $error )
+                            <div class="alert alert-danger alert-dismissible fade show" role="alert">{{$error}}
+                              <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                              </button>
+                            </div>
+                        @endforeach
+                @endif
+                <div class="card-body">
+                    <form action="{{ url("/empresa") }}" method="POST">
+                        {{ csrf_field() }}
+                        <div class="row">
+                            <div class="col-md-4 pr-1">
+                                <div class="form-group">
+                                    <label for="vencimento">Vencimento</label>
+                                    <input type="date" name="vencimento" id="vencimento" class="form-control">
+                                </div>
+                            </div>
+                            <div class="col-md-4 px-1">
+                                <div class="form-group">
+                                    <label for="numero_convenio">Número do convênio</label>
+                                    <input type="text" name="numero_convenio" id="numero_convenio" placeholder="Numero do convenio" class="form-control required">
+                                </div>
+                            </div>
+                            <div class="col-md-4 px-1">
+                                <div class="form-group">
+                                    <label for="telefone">Telefone</label>
+                                    <input type="text" name="telefone" id="telefone" placeholder="4134256089" class="form-control required">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-3 pr-1">
+                                <div class="form-group">
+                                    <label for="razao_social">Razão social</label>
+                                    <input type="text" name="razao_social" id="razao_social" placeholder="Nome da empresa" class="form-control required">
+                                </div>
+                            </div>
+                            <div class="col-md-4 px-1">
+                                <div class="form-group">
+                                    <label for="cnpj">CNJP</label>
+                                    <input type="number" name="cnpj" id="cnpj" placeholder="46678987000107" class="form-control required">
+                                </div>
+                            </div>
+                            <div class="col-md-5 pl-1">
+                                <div class="form-group">
+                                    <label for="endereco">Endereço</label>
+                                    <input type="text" name="endereco" id="endereco" placeholder="Rua Alberto Tavares" class="form-control required">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-4 pr-1">
+                                <div class="form-group">
+                                    <label for="responsavel">Responsável</label>
+                                    <input type="text" name="responsavel" id="responsavel" placeholder="Nome do responsavel" class="form-control required">
+                                </div>
+                            </div>
+                            <div class="col-md-4 px-1">
+                                <div class="form-group">
+                                    <label for="cpf">CPF</label>
+                                    <input type="number" name="cpf" id="cpf" placeholder="25501480964" class="form-control required">
+                                </div>
+                            </div>
+                            <div class="col-md-4 pl-1">
+                                <div class="form-group">
+                                    <label for="email">Email</label>
+                                    <input type="email" name="email" id="email" placeholder="google@gmail.com" class="form-control required">
+                                </div>
+                            </div>
+                        </div>
+                        <button type="submit" class="btn btn-info btn-fill pull-right">Salvar</button>
+                        <div class="clearfix"></div>
+                    </form>
                 </div>
-                <div class="form-group row">
-                    <label id="descricao"  class="col-sm-2 col-form-label">Numero do convenio</label>
-                    <div class="col-sm-10">
-                        <input type="number" name="numero_convenio" class="form-control required">
-                    </div>  
-                </div>
-                <div class="form-group row">
-                    <label id="descricao"  class="col-sm-2 col-form-label">Quantidade de Alunos na empresa</label>
-                    <div class="col-sm-10">
-                        <input type="number" name="quantidade_alunos" class="form-control required">
-                    </div>  
-                </div>
-                <div class="form-group row">
-                    <label id="descricao"  class="col-sm-2 col-form-label">Razao social(?)</label>
-                    <div class="col-sm-10">
-                        <input type="text" name="razao_social" class="form-control required">
-                    </div>  
-                </div>
-                <div class="form-group row">
-                    <label id="descricao"  class="col-sm-2 col-form-label">CNJP</label>
-                    <div class="col-sm-10">
-                        <input type="number" name="cnpj" class="form-control required">
-                    </div>  
-                </div>
-                <div class="form-group row">
-                    <label id="descricao"  class="col-sm-2 col-form-label">Endereço</label>
-                    <div class="col-sm-10">
-                        <input type="text" name="endereco" class="form-control required">
-                    </div>  
-                </div>
-                <div class="form-group row">
-                    <label id="descricao"  class="col-sm-2 col-form-label">Responsavel</label>
-                    <div class="col-sm-10">
-                        <input type="text" name="responsavel" class="form-control required">
-                    </div>  
-                </div>
-                <div class="form-group row">
-                    <label id="descricao"  class="col-sm-2 col-form-label">CPF</label>
-                    <div class="col-sm-10">
-                        <input type="number" name="cpf" class="form-control required">
-                    </div>  
-                </div>
-                <div class="form-group row">
-                    <label id="descricao"  class="col-sm-2 col-form-label">Telefone</label>
-                    <div class="col-sm-10">
-                        <input type="number" name="telefone" class="form-control required">
-                    </div>  
-                </div>
-                <div class="form-group row">
-                    <label id="descricao"  class="col-sm-2 col-form-label">Email</label>
-                    <div class="col-sm-10">
-                        <input type="email" name="email" class="form-control required">
-                    </div>  
-                </div>
-                <button type="submit" class="btn btn-primary">SALVAR</button>
-            </form>    
+            </div>
+        </div>
     </div>
+</div>
 @endsection
